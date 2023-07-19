@@ -18,6 +18,8 @@ public class TerrainMap : TileMapController
         tileMapObjName = TERRAIN_TILEMAP_OBJ_NAME;
         base.InitAwake(mapController_);
 
+        //Debug.LogFormat("mapController_ empty: {0}", mapController_ == null);
+
         allTerrains = new List<TerrainController>();
         // {타일의 x축 갯수와 전체 타일의 수로 맵의 가로, 세로 사이즈를 연산한다.
         mapCellSize = Vector2Int.zero;
@@ -91,8 +93,9 @@ public class TerrainMap : TileMapController
                     terrainType = TerrainType.NONE;
                     break;
             }//switch : 지형별로 다른 설정을 한다
-            
+
             //TODO: tempTerrain Setup 함수 필요함.
+            tempTerrain.SetupTerrain(mapController, terrainType, loopCnt);
             tempTerrain.transform.SetAsFirstSibling();
             allTerrains.Add(tempTerrain);
             loopCnt += 1;

@@ -6,20 +6,32 @@ using UnityEngine;
 public class MapBoard : MonoBehaviour
 {
     private const string TERRAIN_MAP_OBJ_NAME = "TerrianGrid";
-
+    private const string OBSTACLE_MAP_OBJ_NAME = "ObstacleGrid";
     public Vector2Int MapCellSize { get; private set; } = default;
     public Vector2 MapCellGap { get; private set; } = default;
+    
     private TerrainMap terrainMap = default;
+    private ObstacleMap obstacleMap = default;
     private void Awake()
     {
         // 매니저 스크립트 초기화
         ResManager.Instance.Create();
 
+        // PathFinder 초기화
+        PathFinder.Instance.Create();
+        PathFinder.Instance.mapBoard = this;
         //맵 지형 초기화 배치
         terrainMap = gameObject.FindChildComponent<TerrainMap>(TERRAIN_MAP_OBJ_NAME);
         terrainMap.InitAwake(this);
         MapCellSize = terrainMap.GetCellSize();
         MapCellGap = terrainMap.GetCellGap();
+
+        //{맵에 지물을 초기화 하여 배치한다
+        obstacleMap = gameObject.FindChildComponent<ObstacleMap>(OBSTACLE_MAP_OBJ_NAME);
+        obstacleMap.InitAwake(this);
+
+        //}맵에 지물을 초기화 하여 배치한다
+
 
     }
 

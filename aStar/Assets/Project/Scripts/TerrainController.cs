@@ -29,6 +29,7 @@ public class TerrainController : MonoBehaviour
         searchColor = new Color(236f / 255f, 130f / 255f, 20f / 255f, 1f);
         searchColor = new Color(0f, 192f / 255f, 0f, 1f);
         inactiveColor = new Color(128f / 255f, 128f / 255f, 128f / 255f, 1f);
+
     }//Awake()
 
     //! 지형 정보를 초기 설정한다.
@@ -38,6 +39,7 @@ public class TerrainController : MonoBehaviour
         mapController = mapController_;
         TileIdx1D = tileIdx1D_;
         TileIdx2D = mapController.GetTileIdx2D(TileIdx1D);
+        
 
         string prefabName = string.Empty;
         switch (type_)
